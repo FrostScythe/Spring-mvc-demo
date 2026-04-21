@@ -1,5 +1,2 @@
-<html>
-<body>
-<h2>Hello World!</h2>
-</body>
-</html>
+<%-- index.jsp --%>
+<% response.sendRedirect("home"); %>
