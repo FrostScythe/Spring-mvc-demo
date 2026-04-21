@@ -4,20 +4,20 @@
     <servlet>
         <servlet-name>spring</servlet-name>
         <servlet-class>
-            org.springframework.web.servlet.DispatcherServlet
+            org.springframework.web.servlet.DispatcherServlet <!-- register Spring's servlet -->
         </servlet-class>
 
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/spring-servlet.xml</param-value>
+            <param-value>/WEB-INF/spring-servlet.xml</param-value> <!-- tell it where Spring config is -->
         </init-param>
 
-        <load-on-startup>1</load-on-startup>
+        <load-on-startup>1</load-on-startup> <!-- start this servlet when Tomcat starts -->
     </servlet>
 
     <servlet-mapping>
         <servlet-name>spring</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/</url-pattern> <!-- ALL requests go through Spring -->
     </servlet-mapping>
 
 </web-app>
