@@ -35,8 +35,8 @@ public class TeacherService {
         teachers.removeIf(t->t.getId()==id);
     }
 
-    public void searchByName(String name){
-        teachers.stream()
+    public List<Teacher> searchByName(String name){
+        return teachers.stream()
                 .filter(s -> s.getName().toLowerCase()
                         .contains(name.toLowerCase()))
                 .collect(Collectors.toList());

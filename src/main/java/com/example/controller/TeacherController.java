@@ -5,10 +5,7 @@ import com.example.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,7 +32,23 @@ public class TeacherController {
     // Submit Add Form
     @PostMapping("/add")
     public String addTeacher(@ModelAttribute Teacher teacher){
-        teacherService.addTeacher();
+        teacherService.addTeacher(teacher);
+        return "redirect:/teachers";
+    }
 
+    // Delete Teacher
+    @GetMapping("/delete/{id}")
+    public String deleteTeacher(@PathVariable int id){
+        teacherService.deleteTeacher(id);
+        return "redirect:?teachers";
+    }
+
+    @GetMapping("/search")
+    public String searchStudents(@RequestParam String name, Model model){
+        List<Teacher> results = teacherService.searchByName(name);
+        model.addAttribute("teachers",results);
+        model.addAttribute("total",results.size());
+        model.addAttribute("searchTerm",name);
+        return "teachers/list";
     }
 }
