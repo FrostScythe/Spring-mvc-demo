@@ -65,6 +65,14 @@
             <td>${student.course}</td>
             <td>${student.year}</td>
             <td>
+                <%-- Edit button — NEW --%>
+                <a href="/students/edit/${student.id}"
+                   class="btn"
+                   style="background:#2196F3; margin-right:5px;">
+                   Edit
+                </a>
+
+                <%-- Delete button — existing --%>
                 <a href="/students/delete/${student.id}"
                    class="btn btn-red"
                    onclick="return confirm('Delete ${student.name}?')">
@@ -82,6 +90,9 @@
         </tr>
         </c:if>
     </table>
+
+    <br/>
+    <a href="/home" style="color:#888;">← Back to Home</a>
 
 </body>
 </html>

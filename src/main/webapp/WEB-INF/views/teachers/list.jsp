@@ -37,7 +37,7 @@
 
     <!-- Info -->
     <p class="info">
-        Total Students: <strong>${total}</strong>
+        Total Teachers: <strong>${total}</strong>
         <c:if test="${searchTerm != null}">
             | Showing results for: <strong>"${searchTerm}"</strong>
         </c:if>
@@ -86,6 +86,9 @@
         </tr>
         </c:if>
     </table>
+
+    <br/>
+    <a href="/home" style="color:#888;">← Back to Home</a>
 
 </body>
 </html>

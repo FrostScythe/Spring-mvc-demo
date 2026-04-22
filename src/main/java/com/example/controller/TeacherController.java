@@ -40,7 +40,7 @@ public class TeacherController {
     @GetMapping("/delete/{id}")
     public String deleteTeacher(@PathVariable int id){
         teacherService.deleteTeacher(id);
-        return "redirect:?teachers";
+        return "redirect:/teachers";
     }
 
     @GetMapping("/search")

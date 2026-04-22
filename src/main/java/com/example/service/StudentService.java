@@ -39,4 +39,24 @@ public class StudentService {
                         .contains(name.toLowerCase()))
                 .collect(Collectors.toList());
     }
+
+    public void updateStudent(int id, Student updated){
+        for(Student s: students){
+            if(s.getId() == id){
+                s.setName(updated.getName());
+                s.setEmail(updated.getEmail());
+                s.setCourse(updated.getCourse());
+                s.setYear(updated.getYear());
+                break;
+            }
+        }
+
+    }
+
+    public Student getStudentById(int id){
+        return students.stream()
+                .filter(s->s.getId()==id)
+                .findFirst()
+                .orElse(null);
+    }
 }

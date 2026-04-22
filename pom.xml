@@ -6,6 +6,12 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>spring-mvc-demo Maven Webapp</name>
+    <description>
+        A simple Spring MVC web application demonstrating CRUD operations
+        using JSP, JSTL, and Maven-based project structure.
+        It have 2 main entities: STUDENT and TEACHER.
+        The application allows users to perform CRUD operations on both entities, including creating, reading, updating, and deleting records.
+    </description>
     <url>http://maven.apache.org</url>
 
     <dependencies>
