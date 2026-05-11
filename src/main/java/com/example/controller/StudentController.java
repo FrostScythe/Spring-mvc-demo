@@ -14,13 +14,18 @@ import java.util.List;
 public class StudentController {
 
     @Autowired
-    private StudentService studentService;
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     // VIEW ALL students
     @GetMapping
     public String getAllStudents(Model model) {
-        model.addAttribute("students", studentService.getAllStudents());
-        model.addAttribute("total", studentService.getAllStudents().size());
+        List<Student>allStudents = studentService.getAllStudents();
+        model.addAttribute("students", allStudents);
+        model.addAttribute("total", allStudents.size());
         return "students/list";
     }
 
@@ -39,7 +44,7 @@ public class StudentController {
     }
 
     // DELETE student
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteStudent(@PathVariable int id) {
         studentService.deleteStudent(id);
         return "redirect:/students";

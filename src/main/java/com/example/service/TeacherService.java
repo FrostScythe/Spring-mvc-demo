@@ -41,4 +41,24 @@ public class TeacherService {
                         .contains(name.toLowerCase()))
                 .collect(Collectors.toList());
     }
+
+    public Teacher getTeacherById(int Id){
+        return teachers.stream().filter(t->t.getId()==Id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void updateTeacher(int id, Teacher updated){
+        for(Teacher t: teachers){
+            if(t.getId()==id){
+                t.setName(updated.getName());
+                t.setEmail(updated.getEmail());
+                t.setSubject(updated.getSubject());
+                t.setDepartment(updated.getDepartment());
+                t.setExperience(updated.getExperience());
+                t.setSalary(updated.getSalary());
+                break;
+            }
+        }
+    }
 }

@@ -13,7 +13,11 @@ import java.util.List;
 @RequestMapping("/teachers")
 public class TeacherController {
     @Autowired
-    TeacherService teacherService;
+    private final TeacherService teacherService;
+
+    public TeacherController(TeacherService teacherService) {
+        this.teacherService = teacherService;
+    }
 
     @GetMapping
     public String getAllTeacher(Model model){
@@ -37,7 +41,7 @@ public class TeacherController {
     }
 
     // Delete Teacher
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteTeacher(@PathVariable int id){
         teacherService.deleteTeacher(id);
         return "redirect:/teachers";
@@ -50,5 +54,18 @@ public class TeacherController {
         model.addAttribute("total",results.size());
         model.addAttribute("searchTerm",name);
         return "teachers/list";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable int id, Model model) {
+        Teacher teacher = teacherService.getTeacherById(id);
+        model.addAttribute("teacher", teacher);
+        return "teachers/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editTeacher(@PathVariable int id, @ModelAttribute Teacher teacher) {
+        teacherService.updateTeacher(id, teacher);
+        return "redirect:/teachers";
     }
 }
