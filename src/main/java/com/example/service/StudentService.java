@@ -1,62 +1,56 @@
 package com.example.service;
 
 import com.example.model.Student;
+import com.example.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
+    @Autowired
+    private final StudentRepository studentRepository;
 
-    private List<Student> students = new ArrayList<>();
-    private int nextId = 4;
+    //private List<Student> students = new ArrayList<>();
+    //private int nextId = 4;
 
-    public StudentService() {
-        // order: (id, name, email, course, year)
-        students.add(new Student(1, "Alice",   "alice@email.com",   "Spring MVC", 2026));
-        students.add(new Student(2, "Bob",     "bob@email.com",     "Java",        2025));
-        students.add(new Student(3, "Charlie", "charlie@email.com", "Hibernate",   2026));
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
+//    public StudentService() {
+//        // order: (id, name, email, course, year)
+//        students.add(new Student(1, "Alice",   "alice@email.com",   "Spring MVC", 2026));
+//        students.add(new Student(2, "Bob",     "bob@email.com",     "Java",        2025));
+//        students.add(new Student(3, "Charlie", "charlie@email.com", "Hibernate",   2026));
+//    }
+//      to use this data use streams api
+
     public List<Student> getAllStudents() {
-        return students;
+        return studentRepository.findAll();
     }
 
     public void addStudent(Student student) {
-        student.setId(nextId++);
-        students.add(student);
+        studentRepository.save(student);
     }
 
     public void deleteStudent(int id) {
-        students.removeIf(s -> s.getId() == id);
+        studentRepository.delete(id);
     }
 
     public List<Student> searchByName(String name) {
-        return students.stream()
-                .filter(s -> s.getName().toLowerCase()
-                        .contains(name.toLowerCase()))
+        return studentRepository.findAll().stream()
+                .filter(s -> s.getName().toLowerCase().contains(name.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
-    public void updateStudent(int id, Student updated){
-        for(Student s: students){
-            if(s.getId() == id){
-                s.setName(updated.getName());
-                s.setEmail(updated.getEmail());
-                s.setCourse(updated.getCourse());
-                s.setYear(updated.getYear());
-                break;
-            }
-        }
-
+    public void updateStudent(int id, Student updated) {
+        studentRepository.update(id, updated);
     }
 
-    public Student getStudentById(int id){
-        return students.stream()
-                .filter(s->s.getId()==id)
-                .findFirst()
-                .orElse(null);
+    public Student getStudentById(int id) {
+        return studentRepository.findById(id);
     }
 }
