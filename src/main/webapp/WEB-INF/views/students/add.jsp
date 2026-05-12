@@ -33,6 +33,10 @@
             <form:option value="Java">Java</form:option>
             <form:option value="Hibernate">Hibernate</form:option>
             <form:option value="React">React</form:option>
+            <form:option value="English">English</form:option>
+            <form:option value="Maths">Maths</form:option>
+            <form:option value="Physical Education">Physical Education</form:option>
+            <form:option value="Orthology">Orthology</form:option>
         </form:select>
 
         <label>Year:</label>
