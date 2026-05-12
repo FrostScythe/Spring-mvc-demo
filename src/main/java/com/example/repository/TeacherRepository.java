@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 public class TeacherRepository {
@@ -57,5 +58,13 @@ public class TeacherRepository {
 
     public java.util.List<Teacher> findAll() {
         return jdbcTemplate.query("SELECT * FROM teachers", rowMapper);
+    }
+
+    public List<Teacher> searchByName(String name) {
+        return jdbcTemplate.query(
+                "SELECT * FROM teachers WHERE LOWER(name) LIKE ?",
+                rowMapper,
+                "%" + name.toLowerCase() + "%"
+        );
     }
 }

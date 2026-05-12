@@ -65,14 +65,14 @@
             <td>${student.course}</td>
             <td>${student.year}</td>
             <td>
-                <%-- Edit button — NEW --%>
+                <%-- Edit button --%>
                 <a href="/students/edit/${student.id}"
                    class="btn"
                    style="background:#2196F3; margin-right:5px;">
                    Edit
                 </a>
 
-                <%-- Delete button — existing --%>
+                <%-- Delete button --%>
                 <a href="/students/delete/${student.id}"
                    class="btn btn-red"
                    onclick="return confirm('Delete ${student.name}?')">

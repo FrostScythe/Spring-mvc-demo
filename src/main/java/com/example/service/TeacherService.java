@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 @Service
 public class TeacherService {
 
-    @Autowired
     private final TeacherRepository teacherRepository;
 
     public TeacherService(TeacherRepository teacherRepository) {
@@ -44,10 +43,7 @@ public class TeacherService {
     }
 
     public List<Teacher> searchByName(String name){
-        return teacherRepository.findAll().stream()
-                .filter(s -> s.getName().toLowerCase()
-                        .contains(name.toLowerCase()))
-                .collect(Collectors.toList());
+        return teacherRepository.searchByName(name);
     }
 
     public Teacher getTeacherById(int Id){

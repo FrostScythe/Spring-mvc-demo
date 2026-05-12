@@ -32,6 +32,14 @@ public class StudentRepository {
         return jdbcTemplate.query("SELECT * FROM students", rowMapper);
     }
 
+    public List<Student> searchByName(String name) {
+        return jdbcTemplate.query(
+                "SELECT * FROM students WHERE LOWER(name) LIKE ?",
+                rowMapper,
+                "%" + name.toLowerCase() + "%"
+        );
+    }
+
     public void save(Student s) {
         jdbcTemplate.update(
                 "INSERT INTO students (name, email, course, year) VALUES (?,?,?,?)",

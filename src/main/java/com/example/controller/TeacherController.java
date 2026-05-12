@@ -21,8 +21,9 @@ public class TeacherController {
 
     @GetMapping
     public String getAllTeacher(Model model){
-        model.addAttribute("teachers",teacherService.getAllTeachers());
-        model.addAttribute("total",teacherService.getAllTeachers().size());
+        List<Teacher> teachers = teacherService.getAllTeachers();
+        model.addAttribute("teachers",teachers);
+        model.addAttribute("total",teachers.size());
         return "teachers/list";
     }
 
@@ -41,7 +42,7 @@ public class TeacherController {
     }
 
     // Delete Teacher
-    @DeleteMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteTeacher(@PathVariable int id){
         teacherService.deleteTeacher(id);
         return "redirect:/teachers";
@@ -56,6 +57,7 @@ public class TeacherController {
         return "teachers/list";
     }
 
+    //show EDIT FORM for teacher
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable int id, Model model) {
         Teacher teacher = teacherService.getTeacherById(id);

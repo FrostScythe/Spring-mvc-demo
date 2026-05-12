@@ -69,6 +69,12 @@
             <td>${teacher.experience}</td>
             <td>${teacher.salary}</td>
             <td>
+             <%-- Edit button --%>
+            <a href="/teachers/edit/${teacher.id}"
+                               class="btn"
+                               style="background:#2196F3; margin-right:5px;">Edit</a>
+
+                <%-- Delete button --%>
                 <a href="/teachers/delete/${teacher.id}"
                    class="btn btn-red"
                    onclick="return confirm('Delete ${teacher.name}?')">

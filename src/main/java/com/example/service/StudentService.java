@@ -11,14 +11,10 @@ import java.util.stream.Collectors;
 @Service
 public class StudentService {
     @Autowired
-    private final StudentRepository studentRepository;
+    private StudentRepository studentRepository;
 
     //private List<Student> students = new ArrayList<>();
     //private int nextId = 4;
-
-    public StudentService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
-    }
 
 //    public StudentService() {
 //        // order: (id, name, email, course, year)
@@ -41,9 +37,7 @@ public class StudentService {
     }
 
     public List<Student> searchByName(String name) {
-        return studentRepository.findAll().stream()
-                .filter(s -> s.getName().toLowerCase().contains(name.toLowerCase()))
-                .collect(Collectors.toList());
+        return studentRepository.searchByName(name);
     }
 
     public void updateStudent(int id, Student updated) {
