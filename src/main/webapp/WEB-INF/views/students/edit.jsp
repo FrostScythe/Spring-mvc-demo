@@ -3,16 +3,8 @@
 <html>
 <head>
     <title>Edit Student</title>
-    <style>
-        body  { font-family: Arial, sans-serif; margin: 30px; }
-        h1    { color: #333; }
-        label { display: block; margin-top: 12px; font-weight: bold; }
-        input, select { padding: 8px; width: 300px; margin-top: 4px; }
-        .btn  { margin-top: 16px; padding: 10px 20px;
-                background: #2196F3; color: white;
-                border: none; cursor: pointer; border-radius: 4px; }
-        a     { margin-left: 12px; color: #888; }
-    </style>
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 

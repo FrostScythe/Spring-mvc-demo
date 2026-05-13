@@ -1,0 +1,63 @@
+/* ===== GLOBAL ===== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f4f6f8;
+}
+
+h1 { color: #333; }
+
+/* ===== TABLE ===== */
+table { border-collapse: collapse; width: 100%; background: white; }
+th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+th { background-color: #4CAF50; color: white; }
+tr:nth-child(even) { background-color: #f9f9f9; }
+
+/* ===== BUTTONS ===== */
+a.btn {
+    padding: 6px 12px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+a.btn-blue { background: #2196F3; margin-right: 5px; }
+a.btn-red  { background: red; }
+
+button.btn {
+    padding: 10px 20px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 16px;
+}
+button.btn-blue { background: #2196F3; }
+
+/* ===== FORMS ===== */
+label  { display: block; margin-top: 12px; font-weight: bold; }
+input, select {
+    padding: 8px;
+    width: 300px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* ===== SEARCH BAR ===== */
+.search-bar { margin: 15px 0; }
+.search-bar input  { padding: 8px; width: 250px; }
+.search-bar button {
+    padding: 8px 16px;
+    background: #2196F3;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* ===== INFO TEXT ===== */
+.info { color: #555; margin-bottom: 10px; }
+
+/* ===== CANCEL LINK ===== */
+a.cancel { margin-left: 12px; color: #888; text-decoration: none; }

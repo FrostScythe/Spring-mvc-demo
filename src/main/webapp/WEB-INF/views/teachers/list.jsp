@@ -3,22 +3,8 @@
 <html>
 <head>
     <title>Teacher Management System</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 30px; }
-        h1   { color: #333; }
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-        th { background-color: #4CAF50; color: white; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-        a.btn { padding: 6px 12px; background: #4CAF50;
-                color: white; text-decoration: none; border-radius: 4px; }
-        a.btn-red { background: #e53935; }
-        .search-bar { margin: 15px 0; }
-        .search-bar input { padding: 8px; width: 250px; }
-        .search-bar button { padding: 8px 16px; background: #2196F3;
-                             color: white; border: none; cursor: pointer; }
-        .info { color: #555; margin-bottom: 10px; }
-    </style>
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/style.css"/>
 </head>
 <body>
 
@@ -75,11 +61,14 @@
                                style="background:#2196F3; margin-right:5px;">Edit</a>
 
                 <%-- Delete button --%>
-                <a href="/teachers/delete/${teacher.id}"
-                   class="btn btn-red"
-                   onclick="return confirm('Delete ${teacher.name}?')">
-                   Delete
-                </a>
+                <form action="/teachers/delete/${teacher.id}" method="post" style="display:inline;">
+                    <button type="submit"
+                            onclick="return confirm('Delete ${teacher.name}?')"
+                            class="btn btn-red"
+                            style="padding:6px 12px; cursor:pointer;">
+                        Delete
+                    </button>
+                </form>
             </td>
         </tr>
         </c:forEach>
