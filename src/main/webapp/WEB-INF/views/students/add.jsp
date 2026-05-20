@@ -10,16 +10,16 @@
 
     <h1>➕ Add New Student</h1>
 
-    <form:form action="/students/add" method="post" modelAttribute="student">
+    <form:form action="/students/add" method="post" modelAttribute="student" onsubmit="return validate()">
 
         <label>Name:</label>
-        <form:input path="name" placeholder="Enter Name"/>
+        <form:input id="name" path="name" placeholder="Enter Name"/>
 
         <label>Email:</label>
-        <form:input path="email" placeholder="Enter Email"/>
+        <form:input id="email" path="email" placeholder="Enter Email"/>
 
         <label>Course:</label>
-        <form:select path="course">
+        <form:select path="course" id="course">
             <form:option value="">-- Select Course --</form:option>
             <form:option value="Spring MVC">Spring MVC</form:option>
             <form:option value="Java">Java</form:option>
@@ -32,13 +32,13 @@
         </form:select>
 
         <label>Year:</label>
-        <form:input path="year" type="number" placeholder="Enter year"/>
+        <form:input id="year" path="year" type="number" placeholder="eg. 2024"/>
 
         <br/>
         <button type="submit" class="btn">Save Student</button>
         <a href="/students">Cancel</a>
 
     </form:form>
-
+    <script src="${pageContext.request.contextPath}/js/script.js"></script>
 </body>
 </html>
