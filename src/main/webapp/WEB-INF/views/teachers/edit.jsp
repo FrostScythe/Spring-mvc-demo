@@ -12,7 +12,7 @@
 
     <form:form action="/teachers/edit/${teacher.id}"
                method="post"
-               modelAttribute="teacher" onclick="return validateTeacher()">
+               modelAttribute="teacher" onsubmit="return validateTeacher()">
 
         <label>Name:</label>
         <form:input id="name" path="name"/>
@@ -48,6 +48,6 @@
         <a href="/teachers" class="cancel">Cancel</a>
 
     </form:form>
-<script src=" ${pageContext.request.contextPath}/js/script.js"></script>
+<script src="${pageContext.request.contextPath}/js/script.js"></script>
 </body>
 </html>

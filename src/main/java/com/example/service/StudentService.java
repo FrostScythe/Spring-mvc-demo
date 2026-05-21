@@ -1,28 +1,18 @@
 package com.example.service;
 
+import com.example.exception.StudentNotFoundException;
 import com.example.model.Student;
 import com.example.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
-
-    //private List<Student> students = new ArrayList<>();
-    //private int nextId = 4;
-
-//    public StudentService() {
-//        // order: (id, name, email, course, year)
-//        students.add(new Student(1, "Alice",   "alice@email.com",   "Spring MVC", 2026));
-//        students.add(new Student(2, "Bob",     "bob@email.com",     "Java",        2025));
-//        students.add(new Student(3, "Charlie", "charlie@email.com", "Hibernate",   2026));
-//    }
-//      to use this data use streams api
 
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
@@ -45,6 +35,10 @@ public class StudentService {
     }
 
     public Student getStudentById(int id) {
-        return studentRepository.findById(id);
+        try {
+            return studentRepository.findById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new StudentNotFoundException(id);
+        }
     }
 }

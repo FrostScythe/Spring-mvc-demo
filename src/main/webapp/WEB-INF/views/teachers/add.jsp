@@ -12,7 +12,7 @@
 
 <h1>Add New Teacher ➕</h1>
 
-<form:form action="/teachers/add" method="post" modelAttribute="teacher" onclick="return validateTeacher()">
+<form:form action="/teachers/add" method="post" modelAttribute="teacher" onsubmit="return validateTeacher()">
 
     <label>Name:</label>
     <form:input id="name" path="name" placeholder="Enter Name"/>
