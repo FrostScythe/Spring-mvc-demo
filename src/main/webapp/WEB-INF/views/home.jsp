@@ -1,58 +1,24 @@
-<%-- index.jsp --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Home</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<% request.setAttribute("pageTitle", "Home — SchoolMS"); %>
+<% request.setAttribute("currentPage", "home"); %>
+<%@ include file="common/header.jsp" %>
 
-        .card {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            text-align: center;
-            width: 300px;
-        }
+    <div class="home-hero">
+        <h1>Welcome to SchoolMS 👋</h1>
+        <p>Manage your students and teachers in one place.</p>
 
-        h2 {
-            margin-bottom: 25px;
-            color: #333;
-        }
-
-        a {
-            display: block;
-            margin: 10px 0;
-            padding: 12px;
-            text-decoration: none;
-            color: white;
-            background: #4facfe;
-            border-radius: 8px;
-            transition: 0.3s;
-            font-weight: bold;
-        }
-
-        a:hover {
-            background: #007bff;
-            transform: scale(1.05);
-        }
-    </style>
-</head>
-
-<body>
-    <div class="card">
-        <h2>Welcome 👋</h2>
-        <a href="/students">Go to Students</a>
-        <a href="/teachers">Go to Teachers</a>
+        <div class="home-cards">
+            <a href="/students" class="home-card">
+                <div class="card-icon">🎓</div>
+                <div class="card-title">Students</div>
+                <div class="card-desc">View, add, edit & manage students</div>
+            </a>
+            <a href="/teachers" class="home-card">
+                <div class="card-icon">👨‍🏫</div>
+                <div class="card-title">Teachers</div>
+                <div class="card-desc">View, add, edit & manage teachers</div>
+            </a>
+        </div>
     </div>
-</body>
-</html>
+
+<%@ include file="common/footer.jsp" %>

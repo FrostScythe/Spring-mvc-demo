@@ -1,89 +1,92 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Teacher Management System</title>
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/css/style.css"/>
-</head>
-<body>
+<% request.setAttribute("pageTitle", "Teachers — SchoolMS"); %>
+<% request.setAttribute("currentPage", "teachers"); %>
+<%@ include file="../common/header.jsp" %>
 
-    <h1>👨‍🏫 Teacher Management System</h1>
+    <div class="page-header">
+        <div>
+            <h1>👨‍🏫 Teachers</h1>
+            <div class="page-subtitle">Manage all teaching staff</div>
+        </div>
+        <a href="/teachers/add" class="btn btn-primary">+ Add Teacher</a>
+    </div>
 
-    <!-- Search Bar -->
-    <div class="search-bar">
-        <form action="/teachers/search" method="get">
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-value">${total}</div>
+            <div class="stat-label">
+                <c:choose>
+                    <c:when test="${searchTerm != null}">Results for "${searchTerm}"</c:when>
+                    <c:otherwise>Total Teachers</c:otherwise>
+                </c:choose>
+            </div>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <form class="search-form" action="/teachers/search" method="get">
             <input type="text" name="name"
                    placeholder="Search by name..."
                    value="${searchTerm}"/>
-            <button type="submit">Search</button>
-            <a href="/teachers">Clear</a>
+            <button type="submit" class="btn btn-primary btn-sm">Search</button>
+            <c:if test="${searchTerm != null}">
+                <a href="/teachers" class="btn btn-ghost btn-sm">Clear</a>
+            </c:if>
         </form>
     </div>
 
-    <!-- Info -->
-    <p class="info">
-        Total Teachers: <strong>${total}</strong>
-        <c:if test="${searchTerm != null}">
-            | Showing results for: <strong>"${searchTerm}"</strong>
-        </c:if>
-    </p>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Department</th>
+                    <th>Exp.</th>
+                    <th>Salary</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="teacher" items="${teachers}">
+                <tr>
+                    <td>${teacher.id}</td>
+                    <td>${teacher.name}</td>
+                    <td>${teacher.email}</td>
+                    <td>${teacher.subject}</td>
+                    <td>${teacher.department}</td>
+                    <td>${teacher.experience} yrs</td>
+                    <td>₹${teacher.salary}</td>
+                    <td>
+                        <div class="action-cell">
+                            <a href="/teachers/edit/${teacher.id}" class="btn btn-blue btn-sm">Edit</a>
+                            <form action="/teachers/delete/${teacher.id}" method="post" style="display:inline;">
+                                <button type="submit"
+                                        onclick="return confirm('Delete ${teacher.name}?')"
+                                        class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </c:forEach>
 
-    <!-- Add Button -->
-    <a href="/teachers/add" class="btn">+ Add New Teacher</a>
-    <br/><br/>
+                <c:if test="${empty teachers}">
+                <tr>
+                    <td colspan="8">
+                        <div class="empty-state">
+                            <div class="empty-icon">🔍</div>
+                            <div>No teachers found.</div>
+                        </div>
+                    </td>
+                </tr>
+                </c:if>
+            </tbody>
+        </table>
+    </div>
 
-    <!-- Teachers Table -->
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Subject</th>
-            <th>Department</th>
-            <th>Experience</th>
-            <th>salary</th>
-            <th>Action</th>
-        </tr>
-        <c:forEach var="teacher" items="${teachers}">
-        <tr>
-            <td>${teacher.id}</td>
-            <td>${teacher.name}</td>
-            <td>${teacher.email}</td>
-            <td>${teacher.subject}</td>
-            <td>${teacher.department}</td>
-            <td>${teacher.experience}</td>
-            <td>${teacher.salary}</td>
-            <td>
-             <%-- Edit button --%>
-            <a href="/teachers/edit/${teacher.id}"
-                               class="btn"
-                               style="background:#2196F3; margin-right:5px;">Edit</a>
-
-                <%-- Delete button --%>
-                <form action="/teachers/delete/${teacher.id}" method="post" style="display:inline;">
-                    <button type="submit"
-                            onclick="return confirm('Delete ${teacher.name}?')"
-                            class="btn btn-red"
-                            style="padding:6px 12px; cursor:pointer;">
-                        Delete
-                    </button>
-                </form>
-            </td>
-        </tr>
-        </c:forEach>
-
-        <c:if test="${empty teachers}">
-        <tr>
-            <td colspan="6" style="text-align:center;">
-                No teacher found.
-            </td>
-        </tr>
-        </c:if>
-    </table>
-
-    <br/>
-    <a href="/home" style="color:#888;">← Back to Home</a>
-
-</body>
-</html>
+<%@ include file="../common/footer.jsp" %>

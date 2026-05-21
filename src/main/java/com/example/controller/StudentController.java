@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.exception.InvalidSearchException;
 import com.example.model.Student;
 import com.example.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,10 +55,13 @@ public class StudentController {
     @GetMapping("/search")
     public String searchStudents(@RequestParam String name, Model model) {
         List<Student> results = studentService.searchByName(name);
+        if (results != null && results.isEmpty()) {
+            throw  new InvalidSearchException("No student found with name: " + name);
+        }
         model.addAttribute("students", results);
         model.addAttribute("total", results.size());
         model.addAttribute("searchTerm", name);
-        return "students/list"; // reuse same list page
+        return "students/list";
     }
 
     //show EDIT FORM students

@@ -1,40 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% request.setAttribute("pageTitle", "Error — SchoolMS"); %>
+<% request.setAttribute("currentPage", ""); %>
+<%@ include file="common/header.jsp" %>
 
-<%
-    String errorMessage = (String) request.getAttribute("errorMessage");
-
-    if (errorMessage == null || errorMessage.isEmpty()) {
-        errorMessage = "Something went wrong!";
-    }
-%>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Error Page</title>
-
-    <link rel="stylesheet"
-              href="${pageContext.request.contextPath}/css/style.css">
-</head>
-<body>
-
-<div class="error-page">
-    <div class="error-container">
-
-        <div class="error-icon">⚠</div>
-
-        <h1 class="error-title">
-            Oops! Error Occurred
-        </h1>
-
-        <p class="error-message">
-            <%= errorMessage %>
-        </p>
-        <a href="${backUrl}" class="error-btn">Go Back</a>
-
+    <div class="error-page">
+        <div class="error-container">
+            <div class="error-icon">⚠️</div>
+            <h1 class="error-title">Oops! Something went wrong</h1>
+            <p class="error-message">${errorMessage != null ? errorMessage : 'An unexpected error occurred.'}</p>
+            <a href="${backUrl != null ? backUrl : '/'}" class="btn btn-primary">← Go Back</a>
+        </div>
     </div>
-</div>
 
-</body>
-</html>
+<%@ include file="common/footer.jsp" %>

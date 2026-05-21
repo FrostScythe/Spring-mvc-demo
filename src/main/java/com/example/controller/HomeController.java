@@ -17,4 +17,10 @@ public class HomeController {
        // System.out.println("Home accessed - returning home view");
         return "home";
     }
+
+    @RequestMapping("/contact")
+    public String contact() {
+        // System.out.println("Home accessed - returning home view");
+        return "contact";
+    }
 }

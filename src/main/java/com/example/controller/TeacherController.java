@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.exception.InvalidSearchException;
 import com.example.model.Teacher;
 import com.example.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,9 @@ public class TeacherController {
     @GetMapping("/search")
     public String searchStudents(@RequestParam String name, Model model){
         List<Teacher> results = teacherService.searchByName(name);
+        if (results != null && results.isEmpty()) {
+            throw  new InvalidSearchException("No teacher found with name: " + name);
+        }
         model.addAttribute("teachers",results);
         model.addAttribute("total",results.size());
         model.addAttribute("searchTerm",name);
