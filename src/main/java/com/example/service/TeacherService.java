@@ -1,14 +1,12 @@
 package com.example.service;
 
-import com.example.exception.TeacherNotFound;
+import com.example.exception.TeacherNotFoundException;
 import com.example.model.Teacher;
 import com.example.repository.TeacherRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TeacherService {
@@ -39,7 +37,7 @@ public class TeacherService {
         try{
             return teacherRepository.findById(id);
         } catch (EmptyResultDataAccessException e) {
-            throw new TeacherNotFound(id);
+            throw new TeacherNotFoundException(id);
         }
     }
 

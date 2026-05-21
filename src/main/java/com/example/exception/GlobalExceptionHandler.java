@@ -13,8 +13,8 @@ public class GlobalExceptionHandler {
         return "error";
     }
 
-    @ExceptionHandler(TeacherNotFound.class)
-    public String handleTeacherNotFound(TeacherNotFound ex, Model model) {
+    @ExceptionHandler(TeacherNotFoundException.class)
+    public String handleTeacherNotFound(TeacherNotFoundException ex, Model model) {
         model.addAttribute("errorMessage", ex.getMessage());
         return "error";
     }

@@ -6,8 +6,10 @@ import com.example.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -39,7 +41,10 @@ public class StudentController {
 
     // SUBMIT ADD FORM
     @PostMapping("/add")
-    public String addStudent(@ModelAttribute Student student) {
+    public String addStudent(@Valid @ModelAttribute Student student, BindingResult result) {
+        if (result.hasErrors()) {
+            return "students/add"; // show form again with errors
+        }
         studentService.addStudent(student);
         return "redirect:/students"; // after adding, go back to list
     }

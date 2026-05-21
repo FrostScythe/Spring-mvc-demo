@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -19,6 +20,10 @@ public class StudentService {
     }
 
     public void addStudent(Student student) {
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        if (student.getYear() > currentYear) {
+            throw new IllegalArgumentException("Year must be less than or equal to " + currentYear);
+        }
         studentRepository.save(student);
     }
 

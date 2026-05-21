@@ -1,10 +1,25 @@
 package com.example.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class Student {
     private int id;
+
+    @NotBlank(message = "Enter name")
+    @Size(min = 3, max = 16, message = "Name too long")
     private String name;
+
+    @NotBlank(message = "Enter email")
+    @Email(message = "Invalid email format")
     private String email;
+
+    @NotBlank(message = "Select course")
     private String course;
+
+    @Min(value = 1900, message = "Year must be after 1900")
     private int year;
 
     // Default constructor — REQUIRED for form binding
