@@ -13,16 +13,17 @@
     <%-- modelAttribute="student" binds to the Student object from controller --%>
     <form:form action="/students/edit/${student.id}"
                method="post"
-               modelAttribute="student">
+               modelAttribute="student" onsubmit="return validate()">
 
         <label>Name:</label>
-        <form:input path="name"/>         <%-- pre-filled with existing name --%>
+        <form:input path="name" id="name"/>         <%-- pre-filled with existing name --%>
 
         <label>Email:</label>
-        <form:input path="email"/>        <%-- pre-filled with existing email --%>
+        <form:input path="email" id="email"/>        <%-- pre-filled with existing email --%>
 
         <label>Course:</label>
-        <form:select path="course">
+        <form:select path="course" id="course">
+                       <form:option value="">-- Select Course --</form:option>
                        <form:option value="Spring MVC">Spring MVC</form:option>
                        <form:option value="Java">Java</form:option>
                        <form:option value="Hibernate">Hibernate</form:option>
@@ -34,12 +35,13 @@
         </form:select>
 
         <label>Year:</label>
-        <form:input path="year" type="number"/>
+        <form:input id="year" path="year" type="number"/>
 
         <br/>
         <button type="submit" class="btn">Update Student</button>
         <a href="/students">Cancel</a>
-
     </form:form>
+
+    <script src="${pageContext.request.contextPath}/js/script.js"></script>
 </body>
 </html>

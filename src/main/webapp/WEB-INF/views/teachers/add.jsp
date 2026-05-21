@@ -12,16 +12,16 @@
 
 <h1>Add New Teacher ➕</h1>
 
-<form:form action="/teachers/add" method="post" modelAttribute="teacher">
+<form:form action="/teachers/add" method="post" modelAttribute="teacher" onclick="return validateTeacher()">
 
     <label>Name:</label>
-    <form:input path="name" placeholder="Enter Name"/>
+    <form:input id="name" path="name" placeholder="Enter Name"/>
 
     <label>Email:</label>
-    <form:input path="email" placeholder="Enter Email"/>
+    <form:input id="email" path="email" placeholder="Enter Email"/>
 
     <label>Subject:</label>
-    <form:select path="subject">
+    <form:select id="course" path="subject">
         <form:option value="">--Select Subject--</form:option>
         <form:option value="English">English</form:option>
         <form:option value="Spring">Spring</form:option>
@@ -31,7 +31,7 @@
     </form:select>
 
     <label>Department:</label>
-    <form:select path="department">
+    <form:select id="department" path="department">
         <form:option value="">--Select Department--</form:option>
         <form:option value="Information Technology">Information Technology</form:option>
         <form:option value="Electronic & Communication">Electronic & Communication</form:option>
@@ -40,10 +40,10 @@
     </form:select>
 
     <label>Experience:</label>
-    <form:input path="experience" type="number" placeholder="Enter experience"/>
+    <form:input id= "experience" path="experience" type="number" placeholder="Enter experience"/>
 
     <label>Salary:</label>
-    <form:input path="salary" type="number" placeholder="Enter salary"/>
+    <form:input id="salary" path="salary" type="number" placeholder="Enter salary"/>
 
     <br/>
 
@@ -51,6 +51,6 @@
     <a href="/teachers">Cancel</a>
 
 </form:form>
-
+<script src="${pageContext.request.contextPath}/js/script.js"></script>
 </body>
 </html>

@@ -1,3 +1,84 @@
+function validateTeacher() {
+    return (
+        nameValidation() &&
+        emailValidation() &&
+        courseValidation() &&
+        departmentValidation() &&
+        experienceValidation() &&
+        salaryValidation()
+    );
+}
+
+// ==================== Department Validation ====================
+function departmentValidation() {
+    let department = document.getElementById("department").value;
+
+    if (!department) {
+        alert("Select a department");
+        return false;
+    }
+
+    return true;
+}
+
+// ==================== Experience Validation ====================
+function experienceValidation() {
+    let experience = document
+        .getElementById("experience")
+        .value
+        .trim();
+
+    // Empty check
+    if (!experience) {
+        alert("Enter years of experience");
+        return false;
+    }
+
+    // Must be a number
+    if (isNaN(experience)) {
+        alert("Experience must be a number");
+        return false;
+    }
+
+    let expNum = parseInt(experience, 10);
+
+    // Range check
+    if (expNum < 0 || expNum > 50) {
+        alert("Enter a valid experience (0 - 50 years)");
+        return false;
+    }
+
+    return true;
+}
+
+// ==================== Salary Validation ====================
+function salaryValidation() {
+    let salary = document.getElementById("salary").value.trim();
+
+    // Empty check
+    if (!salary) {
+        alert("Enter salary");
+        return false;
+    }
+
+    // Must be a number
+    if (isNaN(salary)) {
+        alert("Salary must be a number");
+        return false;
+    }
+
+    let salaryNum = parseFloat(salary);
+
+    // Range check
+    if (salaryNum < 30000 || salaryNum > 200000) {
+        alert("Enter a valid salary (30,000 - 200,000)");
+        return false;
+    }
+
+    return true;
+}
+
+// ==================== Student Validation ====================
 function validate() {
     return (
         nameValidation() &&
@@ -7,7 +88,7 @@ function validate() {
     );
 }
 
-// Name Validation
+// ==================== Name Validation ====================
 function nameValidation() {
     let name = document.getElementById("name").value.trim();
 
@@ -32,7 +113,7 @@ function nameValidation() {
     return true;
 }
 
-// Email Validation
+// ==================== Email Validation ====================
 function emailValidation() {
     let email = document.getElementById("email").value.trim();
 
@@ -51,7 +132,7 @@ function emailValidation() {
     return true;
 }
 
-// Year Validation
+// ==================== Year Validation ====================
 function yearValidation() {
     let year = document.getElementById("year").value.trim();
 
@@ -79,11 +160,10 @@ function yearValidation() {
     return true;
 }
 
-// Course Validation
+// ==================== Course Validation ====================
 function courseValidation() {
     let course = document.getElementById("course").value;
 
-    // Placeholder selected
     if (!course) {
         alert("Select a course");
         return false;
