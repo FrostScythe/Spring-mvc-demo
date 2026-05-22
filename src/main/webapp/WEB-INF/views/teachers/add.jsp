@@ -20,11 +20,13 @@
             <div class="form-group">
                 <label>Name</label>
                 <form:input id="name" path="name" placeholder="Enter full name"/>
+                <form:errors path="name" style="color:red; font-size:0.82rem;"/>
             </div>
 
             <div class="form-group">
                 <label>Email</label>
                 <form:input id="email" path="email" placeholder="Enter email address"/>
+                <form:errors path="email" style="color:red; font-size:0.82rem;"/>
             </div>
 
             <div class="form-group">
@@ -37,6 +39,7 @@
                     <form:option value="Electronic">Electronic</form:option>
                     <form:option value="Communication">Communication</form:option>
                 </form:select>
+                 <form:errors path="subject" style="color:red; font-size:0.82rem;"/>
             </div>
 
             <div class="form-group">
@@ -48,16 +51,19 @@
                     <form:option value="Literature">Literature</form:option>
                     <form:option value="Mechanical">Mechanical</form:option>
                 </form:select>
+                 <form:errors path="department" style="color:red; font-size:0.82rem;"/>
             </div>
 
             <div class="form-group">
                 <label>Experience (years)</label>
                 <form:input id="experience" path="experience" type="number" placeholder="e.g. 5"/>
+                <form:errors path="experience" style="color:red; font-size:0.82rem;"/>
             </div>
 
             <div class="form-group">
                 <label>Salary (₹)</label>
                 <form:input id="salary" path="salary" type="number" placeholder="e.g. 50000"/>
+                <form:errors path="salary" style="color:red; font-size:0.82rem;"/>
             </div>
 
             <div class="form-actions">

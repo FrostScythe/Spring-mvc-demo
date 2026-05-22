@@ -3,7 +3,6 @@ package com.example.controller;
 import com.example.exception.InvalidSearchException;
 import com.example.model.Student;
 import com.example.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +15,6 @@ import java.util.List;
 @RequestMapping("/students")
 public class StudentController {
 
-    @Autowired
     private final StudentService studentService;
 
     public StudentController(StudentService studentService) {
@@ -58,7 +56,7 @@ public class StudentController {
 
     // SEARCH students
     @GetMapping("/search")
-    public String searchStudents(@RequestParam String name, Model model) {
+    public String searchTeachers(@RequestParam String name, Model model) {
         List<Student> results = studentService.searchByName(name);
         if (results != null && results.isEmpty()) {
             throw  new InvalidSearchException("No student found with name: " + name);

@@ -1,12 +1,32 @@
 package com.example.model;
 
+import javax.validation.constraints.*;
+
 public class Teacher {
     private int id;
+
+    @NotBlank(message = "Enter name")
+    @Size(min = 3, max = 16, message = "Name too long")
     private String name;
+
+    @NotBlank(message = "Enter email")
+    @Email(message = "Invalid email format")
     private String email;
+
+    @NotBlank(message = "Select subject")
     private String subject;
+
+    @NotBlank(message = "Select department")
     private String department;
+
+    @NotBlank(message = "Select department")
+    @Min(value = 0, message = "Experience must be non-negative")
+    @Max(value = 50, message = "Experience cannot exceed 50 years")
     private int experience;
+
+    @NotBlank(message = "Select department")
+    @Min(value = 30000, message = "Salary must be greater than 30000")
+    @Max(value = 200000, message = "Salary must be less than 200000")
     private double salary;
 
     public Teacher(int id,String name , String email, String subject,String department, int experience,double salary){

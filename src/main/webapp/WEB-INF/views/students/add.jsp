@@ -20,11 +20,13 @@
             <div class="form-group">
                 <label>Name</label>
                 <form:input id="name" path="name" placeholder="Enter full name"/>
+                <form:errors path="name" style="color:red; font-size:0.82rem;"/>
             </div>
 
             <div class="form-group">
                 <label>Email</label>
                 <form:input id="email" path="email" placeholder="Enter email address"/>
+                <form:errors path="email"  style="color:red; font-size:0.82rem;"/>
             </div>
 
             <div class="form-group">
@@ -40,11 +42,13 @@
                     <form:option value="Physical Education">Physical Education</form:option>
                     <form:option value="Orthology">Orthology</form:option>
                 </form:select>
+                <form:errors path="course" style="color:red; font-size:0.82rem;"/>
             </div>
 
             <div class="form-group">
                 <label>Year</label>
                 <form:input id="year" path="year" type="number" placeholder="e.g. 2024"/>
+                <form:errors path="year"   style="color:red; font-size:0.82rem;"/>
             </div>
 
             <div class="form-actions">
