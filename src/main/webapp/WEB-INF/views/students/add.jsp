@@ -13,9 +13,11 @@
     </div>
 
     <div class="form-card">
-        <form:form action="/students/add" method="post"
+       <%-- <form:form action="/students/add" method="post"
                    modelAttribute="student"
-                   onsubmit="return validate()">
+                   onsubmit="return validate()"> --%>
+
+    <form:form action="/students/add" method="post" modelAttribute="student">
 
             <div class="form-group">
                 <label>Name</label>

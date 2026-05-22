@@ -13,10 +13,12 @@
     </div>
 
     <div class="form-card">
-        <form:form action="/students/edit/${student.id}"
+        <%-- <form:form action="/students/edit/${student.id}"
                    method="post"
                    modelAttribute="student"
-                   onsubmit="return validate()">
+                   onsubmit="return validate()"> --%>
+
+        <form:form action="/students/edit/${student.id}" method="post" modelAttribute="student">
 
             <div class="form-group">
                 <label>Name</label>
